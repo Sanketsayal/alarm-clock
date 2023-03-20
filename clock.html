@@ -5,11 +5,15 @@
         <link rel="stylesheet" href="./clock.css">
     </head>
     <body>
+        <!-- header of the page -->
         <header>
             <div id="header-div">
                 <h1>Alarm Clock</h1>
             </div>
         </header>
+
+
+        <!-- the div containing the current time and input options -->
         <div id="container">
             <div  class="clock-div">
                 <div id="clock" >
@@ -30,11 +34,14 @@
                     <input type="submit" id="clear" value="Clear" onclick="clearAlarm()">
                 </div>
 
-                <div id="alarm" style="margin-top: 5%;" hidden>
-                    <h2>Your Alarm</h2>
-                    <p id="alarm-time"></p>
-                </div>
                 
+            </div>
+
+            <!-- div containing the list of alarms -->
+            <div class="clock-div">
+                <h1>Your Alarms</h1>
+                <ul id="alarms">
+                </ul>
             </div>
             
         </div>

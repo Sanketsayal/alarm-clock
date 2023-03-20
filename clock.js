@@ -1,6 +1,8 @@
 var sound = new Audio("./sound.mp3");
 sound.loop = true;
 
+//this function shows the current time
+//it also plays the sound if if current time is set in alarm
 let showtime=function(){
 
     let t=currentTime();
@@ -8,10 +10,18 @@ let showtime=function(){
     let clock=document.getElementById('clock');
     clock.innerText=t;
 
-    let x=setTimeout(function(){showtime()},1000)
+    let x=setTimeout(function(){
+        showtime();
+        if(alarmList.includes(t)){
+            sound.play();
+        }
+
+    },1000)
 }
 showtime();
 
+
+//function to get the current time
 function currentTime(){
     let time=new Date();
     let hh=time.getHours();
@@ -39,6 +49,11 @@ function currentTime(){
     return T;
 }
 
+let list=document.getElementById('alarms');
+
+let alarmList=[];
+
+//this function takes the user input and stores it in an array
 function setAlarm(){
     let hh=document.getElementById('hour').value;
     let mm=document.getElementById('min').value;
@@ -53,27 +68,32 @@ function setAlarm(){
     if(ss<10){
         ss='0'+ss
     }
+    
     let alarm=hh+":"+mm+':'+ss+" "+session;
-    document.getElementById('alarm-time').innerText=alarm;
-    document.getElementById('hour').disabled=true;
-    document.getElementById('min').disabled=true;
-    document.getElementById('sec').disabled=true;
-    document.getElementById('session').disabled=true;
-    document.getElementById('alarm').hidden=false;
-
-    setInterval(function(){
-        let time=currentTime();
-        if(time==alarm){
-            sound.play();
-        }
-    },1000)
+    alarmList.push(alarm);
+    updateList(alarm); 
 }
 
+
+//this function adds the newly added alarm to the alarms list
+function updateList(alarm){
+    let html=`
+            <li class='alarm-time'>
+                <p class='time'>${alarm}</p>
+                <input type="submit" class='delete-button' id value='Delete' onclick='deleteItem(this)'>
+            </li>`
+    list.innerHTML+=html;
+}
+
+//function to stop the alarm
 function clearAlarm(){
-    document.getElementById('hour').disabled=false;
-    document.getElementById('min').disabled=false;
-    document.getElementById('sec').disabled=false;
-    document.getElementById('session').disabled=false;
     sound.pause();
-    document.getElementById('alarm').hidden=true;
+}
+
+//function to delete the alarm and removing it from array of alarms
+function deleteItem(e){
+    let alarm=e.parentElement.innerText;
+    const index=alarmList.indexOf(alarm);
+    alarmList.splice(index,1);
+    e.parentElement.remove();
 }
