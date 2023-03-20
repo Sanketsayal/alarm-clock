@@ -14,6 +14,7 @@ let showtime=function(){
         showtime();
         if(alarmList.includes(t)){
             sound.play();
+            alert('your alarm for '+t+' has sounded');
         }
 
     },1000)
