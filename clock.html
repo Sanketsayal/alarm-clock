@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alarm Clock</title>
+        <link rel="stylesheet" href="./clock.css">
+    </head>
+    <body>
+        <header>
+            <div id="header-div">
+                <h1>Alarm Clock</h1>
+            </div>
+        </header>
+        <div id="container">
+            <div  class="clock-div">
+                <div id="clock" >
+
+                </div>
+                <div style="width: 100%;">
+                    <h1>Set Alarm</h1>
+                    <input type="text" id="hour" placeholder="hours(1-12)" required>
+                    <input type="text" id="min" placeholder="min(0-59)" required>
+                    <input type="text" id="sec" placeholder="sec(0-59)" required>
+                    <select id="session" style="width: 5vw;" place>
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" id="submit" onclick="setAlarm()">
+                    <input type="submit" id="clear" value="Clear" onclick="clearAlarm()">
+                </div>
+
+                <div id="alarm" style="margin-top: 5%;" hidden>
+                    <h2>Your Alarm</h2>
+                    <p id="alarm-time"></p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+
+
+        <script src="./clock.js"></script>
+    </body>
+</html>
