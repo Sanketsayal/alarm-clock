@@ -71,8 +71,14 @@ function setAlarm(){
     }
     
     let alarm=hh+":"+mm+':'+ss+" "+session;
-    alarmList.push(alarm);
-    updateList(alarm); 
+    if(alarmList.includes(alarm)){
+        alert('you already have an alarm for set time')
+    }
+    else{
+        alarmList.push(alarm);
+        updateList(alarm);
+    }
+     
 }
 
 
